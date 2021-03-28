@@ -108,10 +108,6 @@ form {
   flex-wrap: wrap;
 }
 
-[class*+'-message'] {
-  font-weight: 500;
-}
-
 .error-message {
   color: red;
 }
