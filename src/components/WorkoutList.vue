@@ -1,6 +1,6 @@
 <template>
   <div id="workoutList-table">
-    <p v-if="workouts.length < 1">No Workouts</p>
+    <h1 v-if="workouts.length < 1">No Workouts</h1>
     <table v-else>
       <thead>
         <tr>

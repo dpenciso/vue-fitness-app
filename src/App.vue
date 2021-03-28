@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="small-container">
-    <h1>Workout List</h1>
+    <h1>Workout Tracker</h1>
     <exercise-form @add:workout="addWorkout" />
     <workout-list
       :workouts="workouts"
@@ -25,27 +25,27 @@ export default {
       workouts: [
         {
           id: 1,
-          name: "push-ups",
-          time: "14:13",
-          weight: 100,
-          sets: 3,
-          reps: 15,
+          name: "run",
+          time: "14:00",
+          weight: "",
+          sets: "",
+          reps: "",
           date: "2021-03-23",
         },
         {
           id: 2,
           name: "sit-ups",
-          time: "14:13",
-          weight: 50,
-          sets: 4,
+          time: "",
+          weight: "",
+          sets: 3,
           reps: 50,
           date: "2021-03-23",
         },
         {
           id: 3,
-          name: "pull-ups",
-          time: "14:13",
-          weight: 30,
+          name: "bench press",
+          time: "",
+          weight: 150,
           sets: 5,
           reps: 10,
           date: "2021-03-23",
@@ -91,7 +91,7 @@ button:hover {
 }
 
 .small-container {
-  max-width: 720px;
+  max-width: 760px;
 }
 
 * body {

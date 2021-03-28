@@ -1,53 +1,42 @@
 <template>
   <div>
     <form @submit.prevent="handleSubmit">
-      <label>Workout Name</label>
-      <input
-        v-model="workout.name"
-        type="text"
-        :class="{ 'has-error': submitting && invalidName }"
-        @focus="clearStatus"
-      />
-      <label>Time</label>
-      <input
-        v-model="workout.time"
-        type="text"
-        :class="{ 'has-error': submitting && invalidTime }"
-        @focus="clearStatus"
-      />
-      <label>Weight</label>
-      <input
-        v-model="workout.weight"
-        type="number"
-        :class="{ 'has-error': submitting && invalidWeight }"
-        @focus="clearStatus"
-      />
-      <label>Number of Sets</label>
-      <input
-        v-model="workout.sets"
-        type="number"
-        :class="{ 'has-error': submitting && invalidSets }"
-        @focus="clearStatus"
-      />
-      <label>Number of Reps</label>
-      <input
-        v-model="workout.reps"
-        type="number"
-        :class="{ 'has-error': submitting && invalidReps }"
-        @focus="clearStatus"
-      />
-      <label>Date</label>
-      <input
-        type="date"
-        v-model="workout.date"
-        :class="{ 'has-error': submitting && invalidDate }"
-        @focus="clearStatus"
-      />
-      <button class="addButton">Add Workout</button>
-      <p v-if="error && submitting" class="error-message">
-        Please fill out all required fields
-      </p>
-      <p v-if="success" class="success-message">Workout successfully added</p>
+      <div>
+        <label>Workout Name <sup>*</sup></label>
+        <input
+          v-model="workout.name"
+          type="text"
+          :class="{ 'has-error': submitting && invalidName }"
+          @focus="clearStatus"
+        />
+      </div>
+      <div>
+        <label>Time</label>
+        <input v-model="workout.time" type="text" @focus="clearStatus" />
+      </div>
+      <div>
+        <label>Weight</label>
+        <input v-model="workout.weight" type="number" @focus="clearStatus" />
+      </div>
+      <div>
+        <label>Number of Sets</label>
+        <input v-model="workout.sets" type="number" @focus="clearStatus" />
+      </div>
+      <div>
+        <label>Number of Reps</label>
+        <input v-model="workout.reps" type="number" @focus="clearStatus" />
+      </div>
+      <div>
+        <label>Date</label>
+        <input type="date" v-model="workout.date" @focus="clearStatus" />
+      </div>
+      <div>
+        <button class="addButton">Add Workout</button>
+        <p v-if="error && submitting" class="error-message">
+          Please fill out all required fields
+        </p>
+        <p v-if="success" class="success-message">Workout successfully added</p>
+      </div>
     </form>
   </div>
 </template>
@@ -73,16 +62,9 @@ export default {
   methods: {
     handleSubmit() {
       this.submitting = true;
-      this.clearStatus();
 
-      if (
-        this.invalidName ||
-        this.invalidReps ||
-        this.invalidWeight ||
-        this.invalidDate ||
-        this.invalidSets ||
-        this.invalidTime
-      ) {
+      this.clearStatus();
+      if (this.invalidName) {
         this.error = true;
         return;
       }
@@ -94,7 +76,7 @@ export default {
         weight: "",
         sets: "",
         reps: "",
-        date: "",
+        date: new Date().toISOString().substr(0, 10),
       };
 
       this.error = false;
@@ -110,18 +92,6 @@ export default {
     invalidName() {
       return this.workout.name.trim() === "";
     },
-    invalidTime() {
-      return this.workout.reps.trim() === "";
-    },
-    invalidWeight() {
-      return this.workout.weight.trim() === "";
-    },
-    invalidSets() {
-      return this.workout.sets.trim() === "";
-    },
-    invalidReps() {
-      return this.workout.reps.trim() === "";
-    },
   },
 };
 </script>
@@ -133,6 +103,9 @@ export default {
 
 form {
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 [class*+'-message'] {
@@ -149,5 +122,9 @@ form {
 
 .addButton {
   margin-left: 0;
+}
+
+sup {
+  color: red;
 }
 </style>
