@@ -78,7 +78,7 @@ export default {
       this.editing = workout.id;
     },
     editWorkout(workout) {
-      if (workout.name === "" || workout.reps === "") return;
+      if (workout.name === "") return;
 
       this.$emit("edit:workout", workout.id, workout);
       this.editing = null;
